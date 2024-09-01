@@ -3,9 +3,10 @@ import RegistrationForm from './RegistrationForm/RegistrationForm';
 import FarmerProfileForm from './RegistrationForm/FarmersProfile';
 import ContractorProfileForm from './RegistrationForm/ContractorProfile';
 import { toast } from 'react-toastify'
+import TermsAndConditions from './TermsAndConditions';
 
 const MultiStepForm = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -22,7 +23,8 @@ const MultiStepForm = () => {
     profilePhoto: null,
     accountType: '',
     // Farmer-specific data
-    farmArea: '',
+    numFarms: 1, 
+    farms: [{ landRegistryNumber: '', farmArea: '' }],
     cropsGrown: [],
     annualProduction: '',
     financialServices: [],
@@ -47,6 +49,10 @@ const MultiStepForm = () => {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
+  const TermsAndConditionsHandler = () => {
+    nextStep();
+  };
+
   const handleRegistrationSubmit = async (data) => {
     let profilePhotoURL = null;
     if (data.profilePhoto) {
@@ -68,6 +74,8 @@ const MultiStepForm = () => {
   };
 
   switch (step) {
+    case 0:
+      return <TermsAndConditions onSubmit={TermsAndConditionsHandler} />;
     case 1:
       return <RegistrationForm onSubmit={handleRegistrationSubmit} />;
     case 2:

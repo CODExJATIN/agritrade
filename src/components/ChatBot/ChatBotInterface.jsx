@@ -1,11 +1,9 @@
-"use client"
-
-import { useState } from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@mui/material"
-import SendIcon from "@mui/icons-material/Send"
-import Input from "@mui/material/Input"
-import Button from "@mui/material/Button"
-import './chatBotInterface.css'
+import { useState, useRef, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import Input from "@mui/material/Input";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import "./ChatBot.css"; // Import the CSS file
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
@@ -14,68 +12,79 @@ export default function ChatBot() {
       text: "Hello, how can I assist you today?",
       sender: "chatbot",
     },
-  ])
-  const [inputValue, setInputValue] = useState("")
-  
+  ]);
+  const [inputValue, setInputValue] = useState("");
+  const messagesEndRef = useRef(null);
+
   const handleSendMessage = () => {
     if (inputValue.trim() !== "") {
       const newMessage = {
         id: messages.length + 1,
         text: inputValue,
         sender: "user",
-      }
-      setMessages([...messages, newMessage])
-      setInputValue("")
+      };
+      setMessages([...messages, newMessage]);
+      setInputValue("");
       setTimeout(() => {
         const botResponse = {
           id: messages.length + 2,
           text: "RESPONSE RECEIVED",
           sender: "chatbot",
-        }
-        setMessages([...messages, newMessage, botResponse])
-      }, 1000)
+        };
+        setMessages([...messages, newMessage, botResponse]);
+      }, 1000);
     }
-  }
+  };
+
+  useEffect(() => {
+    // Scroll to the bottom of the messages container
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   return (
-    <div className="chat-container">
-      <header className="chat-header">
-        <Avatar className="avatar">
-          <AvatarImage src="/placeholder-user.jpg" alt="Chatbot" />
-          <AvatarFallback>CB</AvatarFallback>
+    <div className="chatbot-container">
+      <header className="chatbot-header">
+        <Avatar className="chatbot-avatar">
+          <img src="https://www.shutterstock.com/image-vector/chat-bot-logo-design-concept-600nw-2478937557.jpg" alt="Chatbot" />
         </Avatar>
-        <div className="text-lg font-medium">Chatbot</div>
+        <div className="chatbot-title">Chatbot</div>
       </header>
-      <div className="chat-body">
+      <div className="chatbot-messages">
         {messages.map((message) => (
-          <div key={message.id} className={`message ${message.sender === "user" ? "user" : ""}`}>
-            <Avatar className={`avatar ${message.sender === "user" ? "order-2" : ""}`}>
-              <AvatarImage src="/placeholder-user.jpg" alt={message.sender} />
-              <AvatarFallback>{message.sender === "user" ? "YO" : "CB"}</AvatarFallback>
+          <div
+            key={message.id}
+            className={`message ${message.sender === "user" ? "message-user" : "message-chatbot"}`}
+          >
+            <Avatar className="message-avatar">
+              <img src={`${message.sender === "user" ? "https://cdn-icons-png.flaticon.com/512/149/149071.png" : "https://www.shutterstock.com/image-vector/chat-bot-logo-design-concept-600nw-2478937557.jpg"}`} alt={message.sender} />
             </Avatar>
-            <div className={`message-content ${message.sender}`}>
+            <div className="message-bubble">
               <p>{message.text}</p>
             </div>
           </div>
         ))}
+        {/* This div is used to scroll to the bottom */}
+        <div ref={messagesEndRef} />
       </div>
-      <div className="chat-footer">
+      <div className="chatbot-footer">
         <Input
           type="text"
           placeholder="Type your message..."
-          className="input-field"
+          className="chatbot-input"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              handleSendMessage()
+              handleSendMessage();
             }
           }}
         />
         <Button
           variant="contained"
           color="primary"
-          className="send-button"
+          className="chatbot-button"
           onClick={handleSendMessage}
           endIcon={<SendIcon />}
         >
@@ -83,5 +92,5 @@ export default function ChatBot() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

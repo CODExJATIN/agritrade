@@ -1,10 +1,16 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
-import { TextField, Button, Checkbox, FormControlLabel } from '@mui/material';
+import { TextField, Button, Checkbox, FormControlLabel,Typography, Box, MenuItem } from '@mui/material';
 
 const FarmerProfileSchema = Yup.object().shape({
-  farmArea: Yup.number().required('Farm Area is required').min(1, 'Farm Area must be greater than 0'),
+  numFarms: Yup.number().required('Required').min(1, 'At least one farm').max(20, 'No more than 20 farms'),
+  farms: Yup.array().of(
+    Yup.object().shape({
+      landRegistryNumber: Yup.string().required('Required'),
+      farmArea: Yup.number().required('Required').positive('Must be positive').min(1, 'Must be at least 1 acre'),
+    })
+  ).min(1, 'At least one farm is required'),
   cropsGrown: Yup.array().of(Yup.string().required('Crop is required')).min(1, 'At least one crop is required'),
   annualProduction: Yup.number().required('Annual Production is required').min(0, 'Annual Production must be greater than 0'),
 });
@@ -12,7 +18,8 @@ const FarmerProfileSchema = Yup.object().shape({
 const FarmerProfileForm = ({ onSubmit }) => (
   <Formik
     initialValues={{
-      farmArea: '',
+      numFarms: 1, 
+      farms: [{ landRegistryNumber: '', farmArea: '' }],
       cropsGrown: [''],
       annualProduction: '',
       financialServices: {
@@ -29,9 +36,71 @@ const FarmerProfileForm = ({ onSubmit }) => (
       <Form>
         <h1>Farmer Profile Setup</h1>
 
-        <Field as={TextField} name="farmArea" label="Farm Area (in acres)" fullWidth error={touched.farmArea && !!errors.farmArea} helperText={touched.farmArea && errors.farmArea} />
+        <Typography variant="h6">Select Number of Farms</Typography>
+            <Field
+              as={TextField}
+              name="numFarms"
+              type="number"
+              select
+              fullWidth
+              label="Number of Farms"
+              variant="outlined"
+              margin="normal"
+              onChange={(e) => {
+                const { value } = e.target;
+                setFieldValue('numFarms', value);
+                // Adjust the number of farms fields based on selection
+                const farms = Array.from({ length: value }, (_, i) => ({
+                  landRegistryNumber: '',
+                  farmArea: '',
+                }));
+                setFieldValue('farms', farms);
+              }}
+              error={Boolean(touched.numFarms && errors.numFarms)}
+              helperText={touched.numFarms && errors.numFarms}
+            >
+              {Array.from({ length: 20 }, (_, i) => (
+                <MenuItem key={i + 1} value={i + 1}>
+                  {i + 1}
+                </MenuItem>
+              ))}
+            </Field>
         <br />
         <br />
+        <FieldArray name="farms">
+            {({ remove, push }) => (
+              <div>
+                {values.farms.map((_, index) => (
+                  <Box key={index} mb={2}>
+                    <Typography variant="h6">Farm {index + 1}</Typography>
+                    <Field
+                      as={TextField}
+                      name={`farms.${index}.landRegistryNumber`}
+                      label="Land Registry Number"
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      error={Boolean(touched.farms?.[index]?.landRegistryNumber && errors.farms?.[index]?.landRegistryNumber)}
+                      helperText={touched.farms?.[index]?.landRegistryNumber && errors.farms?.[index]?.landRegistryNumber}
+                    />
+                    <Field
+                      as={TextField}
+                      name={`farms.${index}.farmArea`}
+                      type="number"
+                      label="Farm Area (acres)"
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      error={Boolean(touched.farms?.[index]?.farmArea && errors.farms?.[index]?.farmArea)}
+                      helperText={touched.farms?.[index]?.farmArea && errors.farms?.[index]?.farmArea}
+                    />
+                  </Box>
+                ))}
+              </div>
+            )}
+          </FieldArray>
+          <br/>
+          <br/>
         <h4>Crops Grown in last 5 years:</h4>
         <FieldArray name="cropsGrown">
           {({ push, remove }) => (

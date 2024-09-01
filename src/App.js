@@ -11,7 +11,10 @@ import HomePage from "./components/HomePage/HomePage";
 import UserProfile from "./components/UserProfile/UserProfile";
 import SignUp from "./components/Forms/SignUp";
 import ContractForm from "./components/Forms/CreateContract/CreateContract";
-import ChatBot from "./components/ChatBot/ChatBotInterface"
+import ChatBot from "./components/ChatBot/ChatBotInterface";
+import ContractView from "./components/ContractPage/ContractPage";
+import { sampleContracts } from "./components/ContractPage/contractData";
+import TestContractView from "./components/ContractPage/TestContract";
 
 function App() {
   return (
@@ -20,10 +23,13 @@ function App() {
         <Route path='/' element={<SignUp/>}/>
         <Route path='/login' element={<LoginForm/>}/>
         <Route path='/myprofile' element={<MyProfile/>}/>
-        <Route path='/contract' element={<ContractForm/>}/>
+        <Route path='/create' element={<ContractForm/>}/>
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/profile' element={<UserProfile/>}/>
         <Route path='/bot' element={<ChatBot/>}/>
+        <Route path='/contract' element={<ContractView contract={sampleContracts[0]} userID='CTR001' userType={'contractor'}/>}/>
+
+        <Route path='/test' element={<TestContractView/>}/>
   </Routes>
 
       {/*<Navbar/> <MyProfile/>*/}
