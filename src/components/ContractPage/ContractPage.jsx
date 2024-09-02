@@ -58,6 +58,9 @@ function ContractView({ contract, userID, userType }) {
         setBids(updatedBids);
     };
 
+    const incrementBid = () => setBidAmount((prev) => prev + 1);
+    const decrementBid = () => setBidAmount((prev) => (prev > 0 ? prev - 1 : 0));
+
 
     return (
         <Paper elevation={3} style={{ padding: '20px', maxWidth: '800px', margin: '20px auto' }}>
@@ -134,7 +137,7 @@ function ContractView({ contract, userID, userType }) {
             <div style={{ marginTop: '20px', display: 'flex', gap:'10px' }}>
                 {userType === 'farmer' && !contract.assignedTo && (
                     <Button variant="contained" color="primary" onClick={handleBidDialogOpen}>
-                        Place a Bid
+                        Negotiate
                     </Button>
                 )}
                 <Button variant="outlined" color="secondary" onClick={handleViewBidsOpen}>
@@ -144,36 +147,51 @@ function ContractView({ contract, userID, userType }) {
 
             {/* Bid Dialog (For Farmers) */}
             <Dialog open={openBidDialog} onClose={handleBidDialogClose}>
-                <DialogTitle>Place a Bid</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        label="Bid Amount"
-                        fullWidth
-                        variant="outlined"
-                        value={bidAmount}
-                        onChange={(e) => setBidAmount(e.target.value)}
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Comments"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        variant="outlined"
-                        value={bidComments}
-                        onChange={(e) => setBidComments(e.target.value)}
-                        margin="normal"
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={submitBid} color="primary" variant="contained">
-                        Submit Bid
-                    </Button>
-                    <Button onClick={handleBidDialogClose} color="secondary">
-                        Cancel
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <DialogTitle>Place a Bid</DialogTitle>
+            <DialogContent>
+                <Grid container alignItems="center" spacing={2}>
+                    <Grid item xs={3}>
+                        <IconButton onClick={decrementBid}>
+                            <RemoveIcon />
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            label="Bid Amount"
+                            fullWidth
+                            variant="outlined"
+                            value={bidAmount}
+                            onChange={(e) => setBidAmount(Number(e.target.value))}
+                            margin="normal"
+                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <IconButton onClick={incrementBid}>
+                            <AddIcon />
+                        </IconButton>
+                    </Grid>
+                </Grid>
+                <TextField
+                    label="Comments"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    value={bidComments}
+                    onChange={(e) => setBidComments(e.target.value)}
+                    margin="normal"
+                />
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={submitBid} color="primary" variant="contained">
+                    Submit Bid
+                </Button>
+                <Button onClick={handleBidDialogClose} color="secondary">
+                    Cancel
+                </Button>
+            </DialogActions>
+        </Dialog>
 
             {/* Bids Table Dialog (View for Both Farmers and Contractors) */}
             <Dialog open={openBidsView} onClose={handleViewBidsClose} maxWidth="md" fullWidth>
@@ -252,9 +270,9 @@ function ContractView({ contract, userID, userType }) {
                                     variant="outlined"
                                     value={counterAmount}
                                     fullWidth
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
+                                    onChange={(e) => setCounterAmount(Number(e.target.value))}
+                                    margin="normal"
+                                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                                 />
                             </Grid>
                             <Grid item>

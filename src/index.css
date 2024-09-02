@@ -15,6 +15,21 @@ body {
   
 }
 
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar in Firefox */
+html, body {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar in IE and Edge */
+html, body {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
 .gender-title{
   text-align: left;
 }

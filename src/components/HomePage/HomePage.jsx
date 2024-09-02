@@ -2,6 +2,8 @@
 import React from 'react';
 import { Grid, Container, Box, Typography } from '@mui/material';
 import FarmBox from '../widgets/FarmBox';
+import Navbar from '../widgets/Navbar';
+import Sidebar from '../widgets/Sidebar';
 
 const HomePage = () => {
   const farmDetails = [
@@ -61,11 +63,20 @@ const HomePage = () => {
   ];
 
   return (
+    <>
+      <Navbar />
+      <Sidebar/>
+      <Box
+        sx={{
+          marginLeft: '70px', // Respect the sidebar width
+          padding: '20px',
+          width: '100%',
+        }}
+      >
     <Container
       maxWidth={false}
       disableGutters
       sx={{
-        
         padding: '40px',
       }}
     >
@@ -89,6 +100,8 @@ const HomePage = () => {
         ))}
       </Grid>
     </Container>
+    </Box>
+    </>
   );
 };
 

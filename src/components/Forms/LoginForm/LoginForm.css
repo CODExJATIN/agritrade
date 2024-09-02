@@ -5,6 +5,7 @@
     text-align: center;
     align-items: center;
     gap:70px;
+    height:100vh;
 }
 .icon svg{
     height:370px;
