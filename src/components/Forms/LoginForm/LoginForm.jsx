@@ -3,10 +3,12 @@ import './LoginForm.css'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, MenuItem } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-
+    
+    const navigate = useNavigate();
+    
     const LoginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Email is required'),
         password: Yup.string().required('Password is required'),
@@ -31,7 +33,9 @@ const LoginForm = () => {
     }}
     validationSchema={LoginSchema}
     onSubmit={ (values) => {
-        console.log(values);
+        //console.log(values);
+        navigate('/home');
+
     }}
   >
     {({ errors, touched }) => (
