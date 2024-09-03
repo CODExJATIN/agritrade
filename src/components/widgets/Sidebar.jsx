@@ -5,12 +5,21 @@ import ChatboxOutlineIcon from '@mui/icons-material/Chat';
 import SettingsOutlineIcon from '@mui/icons-material/Settings';
 import HelpCircleOutlineIcon from '@mui/icons-material/Help';
 import LogoutOutlineIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [active, setActive] = useState(false);
 
   const toggleSidebar = () => {
     setActive(!active);
+  };
+
+  const handleNavigate = (path) => {
+    navigate(path);
   };
 
   return (
@@ -109,15 +118,13 @@ const Sidebar = () => {
             transition: '0.5s',
           }}
         >
-          <img
-            src="https://wallpapers.com/images/featured-full/3d-33q6a18khxgta4ll.jpg"
-            alt="Profile"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+           <AccountCircleIcon
+            sx={{ 
+              height: '100%', 
+              width: '100%' ,
+              color: 'gray'
             }}
-          />
+           />
         </Box>
       </Box>
 
@@ -130,32 +137,40 @@ const Sidebar = () => {
           borderTop: '1px solid rgba(0, 0, 0, 0.05)',
         }}
       >
-        <ListItem button sx={{ justifyContent: 'center' }}>
+        <ListItem button sx={{ justifyContent: 'center' }}
+        onClick={() => handleNavigate('/profile')}
+        >
           <ListItemIcon sx={{ justifyContent: 'center', minWidth: 'auto' }}>
             <PersonOutlineIcon />
           </ListItemIcon>
           {active && <ListItemText primary="Profile" sx={{ textAlign: 'center' }} />}
         </ListItem>
 
-        <ListItem button sx={{ justifyContent: 'center' }}>
+        <ListItem button sx={{ justifyContent: 'center' }}
+        onClick={() => handleNavigate('/cc')}
+        >
           <ListItemIcon sx={{ justifyContent: 'center', minWidth: 'auto' }}>
-            <ChatboxOutlineIcon />
+            <AssignmentIcon />
           </ListItemIcon>
-          {active && <ListItemText primary="Inbox" sx={{ textAlign: 'center' }} />}
+          {active && <ListItemText primary="View Contracts" sx={{ textAlign: 'center' }} />}
         </ListItem>
 
-        <ListItem button sx={{ justifyContent: 'center' }}>
+        <ListItem button sx={{ justifyContent: 'center' }}
+        onClick={() => handleNavigate('/bot')}
+        >
           <ListItemIcon sx={{ justifyContent: 'center', minWidth: 'auto' }}>
-            <SettingsOutlineIcon />
+             <SmartToyIcon/> 
           </ListItemIcon>
-          {active && <ListItemText primary="Settings" sx={{ textAlign: 'center' }} />}
+          {active && <ListItemText primary="AgriBot" sx={{ textAlign: 'center' }} />}
         </ListItem>
 
-        <ListItem button sx={{ justifyContent: 'center' }}>
+        <ListItem button sx={{ justifyContent: 'center' }}
+        onClick={() => handleNavigate('/test ')}
+        >
           <ListItemIcon sx={{ justifyContent: 'center', minWidth: 'auto' }}>
             <HelpCircleOutlineIcon />
           </ListItemIcon>
-          {active && <ListItemText primary="Support" sx={{ textAlign: 'center' }} />}
+          {active && <ListItemText primary="Help" sx={{ textAlign: 'center' }} />}
         </ListItem>
 
         <ListItem button sx={{ justifyContent: 'center' }}>

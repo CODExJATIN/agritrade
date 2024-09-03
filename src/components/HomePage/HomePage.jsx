@@ -4,6 +4,8 @@ import { Grid, Container, Box, Typography } from '@mui/material';
 import FarmBox from '../widgets/FarmBox';
 import Navbar from '../widgets/Navbar';
 import Sidebar from '../widgets/Sidebar';
+import CropPricePrediction from '../CropPricePrediction/PricePrediction';
+import CropAndFertilizerPrediction from '../CropFertilizerRecommendation/CropFertilizerTool';
 
 const HomePage = () => {
   const farmDetails = [
@@ -69,8 +71,7 @@ const HomePage = () => {
       <Box
         sx={{
           marginLeft: '70px', // Respect the sidebar width
-          padding: '20px',
-          width: '100%',
+          
         }}
       >
     <Container
@@ -100,6 +101,19 @@ const HomePage = () => {
         ))}
       </Grid>
     </Container>
+
+    
+   <Grid container spacing={4}>
+        {/* Crop Price Prediction */}
+        <Grid item xs={12} md={6}>
+          <CropPricePrediction />
+        </Grid>
+
+        {/* Crop and Fertilizer Prediction */}
+        <Grid item xs={12} md={6}>
+          <CropAndFertilizerPrediction />
+        </Grid>
+    </Grid>
     </Box>
     </>
   );
