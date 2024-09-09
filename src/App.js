@@ -16,7 +16,7 @@ import ContractView from "./components/ContractPage/ContractPage";
 import { sampleContracts } from "./components/ContractPage/contractData";
 import TestContractView from "./components/ContractPage/TestContract";
 import ContractCarousel from "./components/widgets/ContractCorousel";
-
+import ContractDashboard from "./components/Dashboard/Dashboard";
 function App() {
   return (
     <div className="App">
@@ -30,6 +30,7 @@ function App() {
         <Route path='/bot' element={<ChatBot/>}/>
         <Route path='/contract' element={<ContractView contract={sampleContracts[0]} userID='CTR001' userType={'contractor'}/>}/>
         <Route path='/cc' element={<ContractCarousel/>}/>
+        <Route path='/dashboard' element={<ContractDashboard/>}/>
 
         <Route path='/test' element={<TestContractView/>}/>
   </Routes>
