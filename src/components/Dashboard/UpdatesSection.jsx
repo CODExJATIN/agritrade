@@ -6,6 +6,7 @@ const styles = {
         marginTop: '20px',
         display: 'flex',
         overflowX: 'scroll',
+        height:'400px' 
     },
     card: {
         width: '300px',

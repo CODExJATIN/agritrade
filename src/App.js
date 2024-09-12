@@ -17,6 +17,9 @@ import { sampleContracts } from "./components/ContractPage/contractData";
 import TestContractView from "./components/ContractPage/TestContract";
 import ContractCarousel from "./components/widgets/ContractCorousel";
 import ContractDashboard from "./components/Dashboard/Dashboard";
+import FindContracts from "./components/findContracts/FindContracts";
+
+
 function App() {
   return (
     <div className="App">
@@ -28,10 +31,10 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/profile' element={<UserProfile/>}/>
         <Route path='/bot' element={<ChatBot/>}/>
-        <Route path='/contract' element={<ContractView contract={sampleContracts[0]} userID='CTR001' userType={'contractor'}/>}/>
+        <Route path='/contract' element={<ContractView contract={sampleContracts[0]} userID='CTR001' userType={'farmer'}/>}/>
         <Route path='/cc' element={<ContractCarousel/>}/>
         <Route path='/dashboard' element={<ContractDashboard/>}/>
-
+        <Route path='/find' element={<FindContracts/>}/>
         <Route path='/test' element={<TestContractView/>}/>
   </Routes>
 

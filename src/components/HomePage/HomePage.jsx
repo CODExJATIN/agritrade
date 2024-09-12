@@ -90,7 +90,7 @@ const HomePage = () => {
                 sx={{
                   fontWeight: 'bold',
                   fontFamily: 'SUSE',
-                  color: '#333',
+                  color: 'white',
                 }}
               >
                 Farm {index + 1}

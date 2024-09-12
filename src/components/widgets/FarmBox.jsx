@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const FarmBox = ({ status, duration, receivedAmount, dueAmount, cropType, backgroundImage }) => {
   const isOccupied = status === 'Occupied';
-
+  const navigate =useNavigate();
   const containerStyle = {
     position: 'relative',
     borderRadius: '8px',
@@ -75,8 +76,12 @@ const FarmBox = ({ status, duration, receivedAmount, dueAmount, cropType, backgr
     textAlign: 'center',
   };
 
+  const handleNavigate=()=>{
+    isOccupied? navigate('/dashboard'):navigate('/find')
+  }
+
   return (
-    <Box style={containerStyle}>
+    <Box style={containerStyle} onClick={() => handleNavigate()}>
       <div style={backgroundStyle}></div>
       <div style={overlayStyle}></div>
       <div style={contentStyle}>
