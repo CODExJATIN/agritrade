@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Tabs, Tab, Typography, TextField, Box } from '@mui/material';
 import { Cloud, Grass, Agriculture, CalendarMonth, ChevronRight, WbSunny, Spa, Opacity, LocalFlorist, AttachMoney } from '@mui/icons-material';
 
@@ -8,6 +8,14 @@ export default function NewsPage() {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+  useEffect(
+    ()=>{
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+    }, []);
 
   return (
     <div style={{ minWidth:'100%',minHeight: '100vh', backgroundColor: '#F0E6D2', color: '#2C5F2D' }}>

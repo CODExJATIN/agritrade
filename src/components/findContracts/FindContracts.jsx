@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -38,6 +38,8 @@ const mockContracts = [
 const handleNavigate = (path) => {
   window.location.href = path;
 };
+
+
 
 const ContractCard = ({ title, crop, quantity, pricePerUnit, startDate, endDate }) => (
   <Card sx={{ width: 230 }} onClick={()=>handleNavigate("/contract")}>
@@ -99,6 +101,14 @@ export default function FindContracts() {
   const [selectedCrop, setSelectedCrop] = useState('');
   const [selectedDuration, setSelectedDuration] = useState('');
   const [tabValue, setTabValue] = useState(0);
+
+  useEffect(
+    ()=>{
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+    }, []);
 
   const filteredContracts = useMemo(() => {
     return mockContracts.filter((contract) => {

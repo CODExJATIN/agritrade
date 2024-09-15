@@ -6,7 +6,9 @@ import Navbar from '../widgets/Navbar';
 import Sidebar from '../widgets/Sidebar';
 import CropPricePrediction from '../CropPricePrediction/PricePrediction';
 import CropAndFertilizerPrediction from '../CropFertilizerRecommendation/CropFertilizerTool';
-
+import NewsCard from '../widgets/NewsCard';
+import AIFeaturesCard from '../widgets/AiFeaturesCard';
+import ContractsCard from '../widgets/SuggestionsCard';
 const HomePage = () => {
   const farmDetails = [
     {
@@ -104,15 +106,22 @@ const HomePage = () => {
 
     
    <Grid container spacing={4}>
-        {/* Crop Price Prediction */}
-        <Grid item xs={12} md={6}>
-          <CropPricePrediction />
+   <Grid item xs={12} md={12}>
+          <AIFeaturesCard/>
+        </Grid>
+        {/*<Grid item xs={12} md={12}>
+          <ContractsCard/>
+      </Grid>*/}
+        <Grid item xs={12} md={12}>
+          <NewsCard />
         </Grid>
 
-        {/* Crop and Fertilizer Prediction */}
-        <Grid item xs={12} md={6}>
-          <CropAndFertilizerPrediction />
-        </Grid>
+        
+
+        
+
+        
+       
     </Grid>
     </Box>
     </>

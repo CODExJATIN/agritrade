@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Box, Button, Grid,Dialog, MenuItem, Select, TextField, Typography, Tabs, Tab, CircularProgress } from '@mui/material';
 import CropPricePrediction from '../CropPricePrediction/PricePrediction';
 import CropAndFertilizerPrediction from '../CropFertilizerRecommendation/CropFertilizerTool';
@@ -37,7 +37,15 @@ export default function AIAgricultureAssistant() {
     const tracks = stream.getTracks();
     tracks.forEach(track => track.stop());
   };
+
   
+  useEffect(
+    ()=>{
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+    }, []);
   
 
 

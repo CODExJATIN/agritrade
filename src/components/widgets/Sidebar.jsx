@@ -147,7 +147,7 @@ const Sidebar = () => {
         </ListItem>
 
         <ListItem button sx={{ justifyContent: 'center' }}
-        onClick={() => handleNavigate('/cc')}
+        onClick={() => handleNavigate('/find')}
         >
           <ListItemIcon sx={{ justifyContent: 'center', minWidth: 'auto' }}>
             <AssignmentIcon />
