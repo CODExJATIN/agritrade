@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Tabs, Tab, Typography, TextField, Box } from '@mui/material';
-import { Cloud, Grass, Agriculture, CalendarMonth, ChevronRight, WbSunny, Spa, Opacity, Tractor, LocalFlorist, AttachMoney } from '@mui/icons-material';
+import { Cloud, Grass, Agriculture, CalendarMonth, ChevronRight, WbSunny, Spa, Opacity, LocalFlorist, AttachMoney } from '@mui/icons-material';
 
 export default function NewsPage() {
   const [tabValue, setTabValue] = useState(0);
@@ -123,7 +123,6 @@ export default function NewsPage() {
 
                 <Card sx={{ backgroundColor: 'white', borderColor: '#97BC62' }}>
                   <CardHeader
-                    avatar={<Tractor />}
                     title="Understanding Your Rights as a Farmer"
                     subheader="Know the legal framework for contract farming"
                   />
