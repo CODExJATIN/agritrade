@@ -20,7 +20,7 @@ import ContractDashboard from "./components/Dashboard/Dashboard";
 import FindContracts from "./components/findContracts/FindContracts";
 import NewsPage from "./components/NewsPage/NewsPage";
 import AIAgricultureAssistant from "./components/AI-Tools/AgriAITools";
-
+import ConflictResolution from "./components/Conflict-Resolution/ConflictResolution";
 
 function App() {
   return (
@@ -40,6 +40,8 @@ function App() {
         <Route path='/test' element={<TestContractView/>}/>
         <Route path='/news' element={<NewsPage/>}/>
         <Route path='/ai' element={<AIAgricultureAssistant/>}/>
+        <Route path="/report" element={<ConflictResolution/>}/>
+        
   </Routes>
 
       {/*<Navbar/> <MyProfile/>*/}
