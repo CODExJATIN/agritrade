@@ -317,6 +317,9 @@ function IssueCard({ id, category, status, date, description }) {
         <p><strong>Status:</strong> {status}</p>
         <p><strong>Date:</strong> {date}</p>
         <p><strong>Description:</strong> {description}</p>
+        <Button color="success">
+            View Details
+        </Button>
       </CardContent>
     </Card>
   );
