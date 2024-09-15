@@ -18,6 +18,8 @@ import TestContractView from "./components/ContractPage/TestContract";
 import ContractCarousel from "./components/widgets/ContractCorousel";
 import ContractDashboard from "./components/Dashboard/Dashboard";
 import FindContracts from "./components/findContracts/FindContracts";
+import NewsPage from "./components/NewsPage/NewsPage";
+import AIAgricultureAssistant from "./components/AI-Tools/AgriAITools";
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
         <Route path='/dashboard' element={<ContractDashboard/>}/>
         <Route path='/find' element={<FindContracts/>}/>
         <Route path='/test' element={<TestContractView/>}/>
+        <Route path='/news' element={<NewsPage/>}/>
+        <Route path='/ai' element={<AIAgricultureAssistant/>}/>
   </Routes>
 
       {/*<Navbar/> <MyProfile/>*/}
