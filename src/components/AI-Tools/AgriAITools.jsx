@@ -88,7 +88,7 @@ export default function AIAgricultureAssistant() {
   return (
     <Box sx={{ minWidth:'100%',minHeight: '100vh', backgroundImage: 'url(/background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', p: 4 }}>
       <Box sx={{ backgroundColor: '#f4fff9', borderRadius: '8px', p: 4, mx: 'auto', width: '90%', maxWidth: '1200px', boxShadow: 3, border: '1px solid #e0f2e9' }}>
-        <Typography variant="h3" gutterBottom textAlign="center" color="green">AI Agriculture Assistant</Typography>
+        <Typography sx={{fontWeight:'bold'}} variant="h3" gutterBottom textAlign="center" color="green">AgriTrade AI features</Typography>
 
         <Grid container spacing={4}>
           <Grid item lg={6} sx={{ display: { xs: 'none', lg: 'block' } }}>

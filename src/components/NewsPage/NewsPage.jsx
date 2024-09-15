@@ -264,38 +264,6 @@ export default function NewsPage() {
           </aside>
         </Box>
       </div>
-              <Box sx={{ marginBottom: '32px' }}>
-                {/* Contract Farming Laws */}
-                <Card sx={{ backgroundColor: 'white', borderColor: '#97BC62', marginBottom: '16px' }}>
-                  <CardHeader
-                    title="New Contract Farming Laws Passed"
-                    subheader="Government ensures more transparency for farmers"
-                  />
-                  <CardContent>
-                    <Typography paragraph>
-                      The government has recently passed new laws that regulate contract farming. These laws aim to protect farmers' interests by ensuring fair terms, better pricing, and more transparency in agreements with contractors...
-                    </Typography>
-                    <Button color="inherit" sx={{ padding: 0, textTransform: 'none' }}>
-                      Learn more
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                <Card sx={{ backgroundColor: 'white', borderColor: '#97BC62' }}>
-                  <CardHeader
-                    title="Understanding Your Rights as a Farmer"
-                    subheader="Know the legal framework for contract farming"
-                  />
-                  <CardContent>
-                    <Typography paragraph>
-                      Contract farming has become an essential part of modern agriculture, but it's important for farmers to know their rights. This article provides a detailed explanation of the legal aspects of contract farming agreements...
-                    </Typography>
-                    <Button color="inherit" sx={{ padding: 0, textTransform: 'none' }}>
-                      Learn more
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Box>
     </div>
   );
 }
