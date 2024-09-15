@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { 
   Box, Button, TextField, Select, MenuItem, InputLabel, FormControl, Checkbox, FormControlLabel, Card, CardContent, CardHeader, Tabs, Tab ,Typography, List, ListItem, ListItemText
 } from '@mui/material';
@@ -13,6 +13,15 @@ export default function ConflictResolution() {
   const [issueSubmitted, setIssueSubmitted] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo({
+        top:0,
+        behaviour:'smooth'
+    })
+  }, [guidelinesAccepted]);
+
+  
 
   const handleAcceptGuidelines = () => {
     setGuidelinesAccepted(true);
