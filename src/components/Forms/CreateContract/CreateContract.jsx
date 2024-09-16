@@ -3,10 +3,11 @@ import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, MenuItem, FormControl, InputLabel, Select,Checkbox,FormControlLabel , Radio, RadioGroup, FormLabel, Typography, Box} from '@mui/material';
 import Boxcard from '../../Box-card';
+import { useNavigate } from 'react-router-dom';
 
 const ContractForm = () => {
 
-  
+  const navigate = useNavigate();
   
   const crops = [
     'Wheat',
@@ -206,7 +207,7 @@ const ContractForm = () => {
     console.log(values);
     console.log('Remaining Amount:', remainingAmount);
     console.log('Installment Amount:', installmentAmount);
-
+    navigate('/contract')
     
   }}
 >
