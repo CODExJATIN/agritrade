@@ -8,6 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     
     const navigate = useNavigate();
+
+    function handleNavigate(path){
+        navigate(path);
+    }
     
     const LoginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Email is required'),
@@ -69,7 +73,7 @@ const LoginForm = () => {
   </Formik>
   <br/>
   <br/>
-   <p className='dont-have-ac'><i>Don't have an account? </i><a>SignUp</a></p>
+   <p className='dont-have-ac'><i>Don't have an account? </i><a onClick={()=>handleNavigate('/')}>SignUp</a></p>
         </div>
     </div>
   )
